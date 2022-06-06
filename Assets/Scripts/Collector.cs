@@ -5,11 +5,13 @@ using UnityEngine;
 public class Collector : MonoBehaviour
 {
     GameObject playerCube;
+    GameObject gameManager;
     int height = 0;
 
     void Start()
     {
         playerCube = GameObject.Find("PlayerCube");
+        gameManager = GameObject.Find("GameManager");
     }
 
     // Update is called once per frame
@@ -28,6 +30,10 @@ public class Collector : MonoBehaviour
             other.gameObject.GetComponent<CollectableCube>().SetIndex(height);
             other.gameObject.transform.parent = playerCube.transform;
             playerCube.GetComponent<PlayerController>().UpdateScore();
+        }
+        else if (other.gameObject.tag == "Obstacle" && height == 0)
+        {
+            gameManager.GetComponent<GameManager>().FinishGame();
         }
     }
 
