@@ -35,4 +35,9 @@ public class Collector : MonoBehaviour
     {
         height--;
     }
+
+    public int GetHeight()
+    {
+        return height;
+    }
 }

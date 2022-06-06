@@ -31,4 +31,15 @@ public class PlayerController : MonoBehaviour
     {
         return score;
     }
+
+    public int GetPlayerHeight()
+    {
+        return ((int)transform.position.y);
+    }
+
+    public void FinishGame() 
+    {
+        this.moveForwardSpeed = 0;
+        this.xAxisSpeed = 0;
+    }
 }

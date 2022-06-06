@@ -9,16 +9,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject obstacle;
     int x = -5;
+    GameObject player;
 
     void Start()
     {
+        player = GameObject.Find("PlayerCube");
         for (int i = 0; i < 20; i++) 
         {
             int type = Random.Range(0,2);
             if (type == 0) 
             {
                 GameObject collect_ = Instantiate(collect);
-                collect_.transform.position = new Vector3(x,1,0);
+                float z = Random.Range(-4, 4);
+                collect_.transform.position = new Vector3(x,1,z);
                 x -= 5;
 
             } 
@@ -37,4 +40,10 @@ public class GameManager : MonoBehaviour
     {
         
     }    
+
+    public void FinishGame()
+    {
+        player.GetComponent<PlayerController>().FinishGame();
+        Debug.Log("game finished");
+    }
 }
