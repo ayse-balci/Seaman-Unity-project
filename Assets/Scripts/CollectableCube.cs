@@ -8,11 +8,13 @@ public class CollectableCube : MonoBehaviour
     int index; // determine height
     public GameObject collector;
     GameObject player;
+    GameObject gameManager;
 
     void Start()
     {
         collector = GameObject.FindGameObjectWithTag("Collector");
         player = GameObject.Find("PlayerCube");
+        gameManager = GameObject.Find("GameManager");
         isCollected = false;
     }
 
@@ -49,6 +51,10 @@ public class CollectableCube : MonoBehaviour
             transform.parent = null;
             GetComponent<BoxCollider>().enabled = false;
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+        else if (other.gameObject.tag == "FinishCube")
+        {
+            gameManager.GetComponent<GameManager>().FinishGame();
         }
     }
 }

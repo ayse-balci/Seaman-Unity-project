@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     GameObject startPanel;
     [SerializeField]
     GameObject scorePanel;
+    [SerializeField]
+    GameObject finishPanel;
     List<GameObject> obstacleList;
 
     void Start()
@@ -82,6 +84,7 @@ public class GameManager : MonoBehaviour
     public void FinishGame()
     {
         player.GetComponent<PlayerController>().FinishGame();
+        finishPanel.SetActive(true);
         Debug.Log("game finished");
     }
 }

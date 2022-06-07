@@ -35,6 +35,11 @@ public class Collector : MonoBehaviour
         {
             gameManager.GetComponent<GameManager>().FinishGame();
         }
+        else if (other.gameObject.tag == "FinishCube")
+        {
+            gameManager.GetComponent<GameManager>().FinishGame();
+            Debug.Log("game finished");
+        }
     }
 
     public void decreaseHeight()

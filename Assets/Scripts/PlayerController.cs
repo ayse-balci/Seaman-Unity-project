@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float xAxisSpeed;
     private float speed = 0;
     public int score = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -47,5 +48,6 @@ public class PlayerController : MonoBehaviour
     {
         this.speed = 0;
         this.xAxisSpeed = 0;
+        //finishPanel.SetActive(true);
     }
 }
