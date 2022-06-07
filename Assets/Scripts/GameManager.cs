@@ -16,12 +16,37 @@ public class GameManager : MonoBehaviour
     GameObject doubleObstacle;
     int x = -5;
     GameObject player;
+    [SerializeField]
+    GameObject startPanel;
+    [SerializeField]
+    GameObject scorePanel;
+    List<GameObject> obstacleList;
 
     void Start()
     {
         player = GameObject.Find("PlayerCube");
-        List<GameObject> obstacleList = new List<GameObject> {obstacle, leftHalfObstacle, rightHalfObstacle, doubleObstacle};
+        startPanel.SetActive(true);
+        obstacleList = new List<GameObject> {obstacle, leftHalfObstacle, rightHalfObstacle, doubleObstacle};
 
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }    
+
+    public void StartGame()
+    {
+        startPanel.SetActive(false);
+        scorePanel.SetActive(true);
+        player.GetComponent<PlayerController>().SetSpeed();
+        createCollectsAndObstacles();
+    }
+
+    void createCollectsAndObstacles()
+    {
         for (int i = 0; i < 50; i++) 
         {
             int type = Random.Range(0,3);
@@ -51,15 +76,8 @@ public class GameManager : MonoBehaviour
                 collect_.transform.position = new Vector3(x,1,z);
                 x -= 5;
             }
-
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }    
 
     public void FinishGame()
     {

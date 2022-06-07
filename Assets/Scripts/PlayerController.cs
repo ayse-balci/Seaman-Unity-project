@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float moveForwardSpeed;
+    public float moveForwardSpeed;
     [SerializeField]
     private float xAxisSpeed;
+    private float speed = 0;
     public int score = 0;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float xAxis = Input.GetAxis("Horizontal") * xAxisSpeed * Time.deltaTime;
-        this.transform.Translate(xAxis, 0, moveForwardSpeed * Time.deltaTime);
+        this.transform.Translate(xAxis, 0, speed * Time.deltaTime);
     }
 
     public void UpdateScore()
@@ -37,9 +38,14 @@ public class PlayerController : MonoBehaviour
         return ((int)transform.position.y);
     }
 
+    public void SetSpeed()
+    {
+        speed = moveForwardSpeed;
+    }
+
     public void FinishGame() 
     {
-        this.moveForwardSpeed = 0;
+        this.speed = 0;
         this.xAxisSpeed = 0;
     }
 }
