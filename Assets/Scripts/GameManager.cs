@@ -8,27 +8,47 @@ public class GameManager : MonoBehaviour
     GameObject collect;
     [SerializeField]
     GameObject obstacle;
+    [SerializeField]
+    GameObject leftHalfObstacle;
+    [SerializeField]
+    GameObject rightHalfObstacle;
+    [SerializeField]
+    GameObject doubleObstacle;
     int x = -5;
     GameObject player;
 
     void Start()
     {
         player = GameObject.Find("PlayerCube");
-        for (int i = 0; i < 20; i++) 
+        List<GameObject> obstacleList = new List<GameObject> {obstacle, leftHalfObstacle, rightHalfObstacle, doubleObstacle};
+
+        for (int i = 0; i < 50; i++) 
         {
-            int type = Random.Range(0,2);
-            if (type == 0) 
+            int type = Random.Range(0,3);
+            if (type == 0 && i!= 0 && i!= 1) 
+            {
+                
+                int obstacleType = Random.Range(0,4);
+                GameObject obstacle_ = Instantiate(obstacleList[obstacleType]);
+                if (obstacleType == 1) 
+                {
+                    obstacle_.transform.position = new Vector3(x,1, (float) -2.5);   // left obstacle pos
+                } 
+                else if (obstacleType == 2) 
+                {
+                    obstacle_.transform.position = new Vector3(x,1, (float) 2.5); // right obstacle pos
+                }
+                else{
+                    obstacle_.transform.position = new Vector3(x,1, 0);
+                }
+                
+                x -= 5;
+            } 
+            else 
             {
                 GameObject collect_ = Instantiate(collect);
                 float z = Random.Range(-4, 4);
                 collect_.transform.position = new Vector3(x,1,z);
-                x -= 5;
-
-            } 
-            else 
-            {
-                GameObject obstacle_ = Instantiate(obstacle);
-                obstacle_.transform.position = new Vector3(x,1,0);
                 x -= 5;
             }
 
