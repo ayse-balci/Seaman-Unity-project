@@ -1200,6 +1200,8 @@ MonoBehaviour:
   leftHalfObstacle: {fileID: 6149324101973418581, guid: 7c8a27669cad96d449084d9ee9b88837, type: 3}
   rightHalfObstacle: {fileID: 8450542839988591445, guid: ac01c08d4c5119c4e9cc830a03aa7237, type: 3}
   doubleObstacle: {fileID: 8347202021167813285, guid: a8fdcf6d2fa30cc4fa391b2d1c007237, type: 3}
+  award: {fileID: 6875934294004620228, guid: a10ef55683f663141ba722d4d0b2c3be, type: 3}
+  threeAward: {fileID: 6162498542910926993, guid: 95e92ceb5c8d04b4d83f4d15826d4484, type: 3}
   startPanel: {fileID: 589460389}
   scorePanel: {fileID: 190452705}
   finishPanel: {fileID: 2038318085}

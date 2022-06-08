@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Collector
   - FinishCube
+  - Award
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     GameObject rightHalfObstacle;
     [SerializeField]
     GameObject doubleObstacle;
+    [SerializeField]
+    GameObject award;
+    [SerializeField]
+    GameObject threeAward;
     int x = -5;
     GameObject player;
     [SerializeField]
@@ -23,12 +27,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject finishPanel;
     List<GameObject> obstacleList;
+    List<GameObject> awardList;
 
     void Start()
     {
         player = GameObject.Find("PlayerCube");
         startPanel.SetActive(true);
         obstacleList = new List<GameObject> {obstacle, leftHalfObstacle, rightHalfObstacle, doubleObstacle};
+        awardList = new List<GameObject> {award, threeAward};
 
         
     }
@@ -51,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 50; i++) 
         {
-            int type = Random.Range(0,3);
+            int type = Random.Range(0,4);
             if (type == 0 && i!= 0 && i!= 1) 
             {
                 
@@ -70,7 +76,14 @@ public class GameManager : MonoBehaviour
                 }
                 
                 x -= 5;
-            } 
+            }
+            else if (type == 1) 
+            {
+                int awardType = Random.Range(0,2);
+                GameObject award = Instantiate(awardList[awardType]);
+                award.transform.position = new Vector3(x,1, 0);
+                x -= 5;
+            }
             else 
             {
                 GameObject collect_ = Instantiate(collect);

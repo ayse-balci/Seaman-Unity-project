@@ -29,7 +29,12 @@ public class Collector : MonoBehaviour
             other.gameObject.GetComponent<CollectableCube>().SetIsCollected();
             other.gameObject.GetComponent<CollectableCube>().SetIndex(height);
             other.gameObject.transform.parent = playerCube.transform;
+            
+        }
+        else if (other.gameObject.tag == "Award")
+        {
             playerCube.GetComponent<PlayerController>().UpdateScore();
+            other.gameObject.SetActive(false);
         }
         else if (other.gameObject.tag == "Obstacle" && height == 0)
         {
