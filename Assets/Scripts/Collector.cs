@@ -7,11 +7,13 @@ public class Collector : MonoBehaviour
     GameObject playerCube;
     GameObject gameManager;
     int height = 0;
+    AudioSource collectAudio;
 
     void Start()
     {
         playerCube = GameObject.Find("PlayerCube");
         gameManager = GameObject.Find("GameManager");
+        collectAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class Collector : MonoBehaviour
             other.gameObject.GetComponent<CollectableCube>().SetIsCollected();
             other.gameObject.GetComponent<CollectableCube>().SetIndex(height);
             other.gameObject.transform.parent = playerCube.transform;
-            
+            collectAudio.Play();
         }
         else if (other.gameObject.tag == "Award")
         {
