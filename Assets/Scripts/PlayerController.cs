@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float xAxisSpeed;
     private float speed = 0;
+    private float xSpeed = 0;
+    
     public int score = 0;
     
     // Start is called before the first frame update
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xAxis = Input.GetAxis("Horizontal") * xAxisSpeed * Time.deltaTime;
+        float xAxis = Input.GetAxis("Horizontal") * xSpeed * Time.deltaTime;
         this.transform.Translate(xAxis, 0, speed * Time.deltaTime);
     }
 
@@ -41,13 +43,13 @@ public class PlayerController : MonoBehaviour
 
     public void SetSpeed()
     {
-        speed = moveForwardSpeed;
+        this.speed = moveForwardSpeed;
+        this.xSpeed = xAxisSpeed;
     }
 
     public void FinishGame() 
     {
         this.speed = 0;
-        this.xAxisSpeed = 0;
-        //finishPanel.SetActive(true);
+        this.xSpeed = 0;
     }
 }

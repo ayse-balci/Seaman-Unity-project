@@ -49,7 +49,6 @@ public class Collector : MonoBehaviour
         else if (other.gameObject.tag == "FinishCube")
         {
             gameManager.GetComponent<GameManager>().FinishGame();
-            Debug.Log("game finished");
         }
     }
 

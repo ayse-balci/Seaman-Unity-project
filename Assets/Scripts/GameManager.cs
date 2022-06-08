@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Text scoreText;
-
     void Start()
     {
         player = GameObject.Find("PlayerCube");
@@ -61,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     void createCollectsAndObstacles()
     {
+        Debug.Log("x  " + x);
         for (int i = 0; i < 50; i++) 
         {
             int type = Random.Range(0,4);
@@ -113,12 +113,15 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartGame()
-    {
+    {   
+        //this.x = -5;
+        this.x -= 20;
+        createCollectsAndObstacles();
         collector.GetComponent<Collector>().SetHeight();
         finishPanel.SetActive(false);
+        //player.transform.position = new Vector3(-30,1,0);
         player.GetComponent<PlayerController>().SetSpeed();
-        //player.transform.position = new Vector3(0,0,0);
-        createCollectsAndObstacles();
+
     }
 
     private void DestroyGameObjects(string tag)
