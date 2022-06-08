@@ -63,6 +63,11 @@ public class Collector : MonoBehaviour
         return height;
     }
 
+    public void SetHeight()
+    {
+        this.height = 0;
+    }
+
     public void CollectSound()
     {
         audio.clip = collectSound;

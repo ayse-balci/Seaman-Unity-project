@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     GameObject threeAward;
     int x = -5;
     GameObject player;
+    GameObject collector;
     [SerializeField]
     GameObject startPanel;
     [SerializeField]
@@ -29,9 +31,13 @@ public class GameManager : MonoBehaviour
     List<GameObject> obstacleList;
     List<GameObject> awardList;
 
+    [SerializeField]
+    private Text scoreText;
+
     void Start()
     {
         player = GameObject.Find("PlayerCube");
+        collector = GameObject.Find("Collector");
         startPanel.SetActive(true);
         obstacleList = new List<GameObject> {obstacle, leftHalfObstacle, rightHalfObstacle, doubleObstacle};
         awardList = new List<GameObject> {award, threeAward};
@@ -98,6 +104,29 @@ public class GameManager : MonoBehaviour
     {
         player.GetComponent<PlayerController>().FinishGame();
         finishPanel.SetActive(true);
+        scoreText.text = player.GetComponent<PlayerController>().GetScore().ToString();
         Debug.Log("game finished");
+        DestroyGameObjects("Collect");
+        DestroyGameObjects("Obstacle");
+        DestroyGameObjects("Award");
+        
+    }
+
+    public void RestartGame()
+    {
+        collector.GetComponent<Collector>().SetHeight();
+        finishPanel.SetActive(false);
+        player.GetComponent<PlayerController>().SetSpeed();
+        //player.transform.position = new Vector3(0,0,0);
+        createCollectsAndObstacles();
+    }
+
+    private void DestroyGameObjects(string tag)
+    {
+        GameObject[] gameObjecsForDestroy = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject go in gameObjecsForDestroy)
+        {
+            Destroy(go);
+        }
     }
 }
