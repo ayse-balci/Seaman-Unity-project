@@ -51,6 +51,7 @@ public class CollectableCube : MonoBehaviour
             transform.parent = null;
             GetComponent<BoxCollider>().enabled = false;
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            collector.GetComponent<Collector>().HitObstacleSound();
         }
         else if (other.gameObject.tag == "FinishCube")
         {

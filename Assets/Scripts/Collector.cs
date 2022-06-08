@@ -7,13 +7,15 @@ public class Collector : MonoBehaviour
     GameObject playerCube;
     GameObject gameManager;
     int height = 0;
-    AudioSource collectAudio;
-
+    AudioSource audio;
+    public AudioClip collectSound;
+    public AudioClip hitSound;
+    public AudioClip awardSound;
     void Start()
     {
         playerCube = GameObject.Find("PlayerCube");
         gameManager = GameObject.Find("GameManager");
-        collectAudio = GetComponent<AudioSource>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,15 +33,17 @@ public class Collector : MonoBehaviour
             other.gameObject.GetComponent<CollectableCube>().SetIsCollected();
             other.gameObject.GetComponent<CollectableCube>().SetIndex(height);
             other.gameObject.transform.parent = playerCube.transform;
-            collectAudio.Play();
+            CollectSound();
         }
         else if (other.gameObject.tag == "Award")
         {
             playerCube.GetComponent<PlayerController>().UpdateScore();
             other.gameObject.SetActive(false);
+            AwardSound();
         }
         else if (other.gameObject.tag == "Obstacle" && height == 0)
         {
+            HitObstacleSound();
             gameManager.GetComponent<GameManager>().FinishGame();
         }
         else if (other.gameObject.tag == "FinishCube")
@@ -58,4 +62,24 @@ public class Collector : MonoBehaviour
     {
         return height;
     }
+
+    public void CollectSound()
+    {
+        audio.clip = collectSound;
+        audio.Play();
+    }
+
+    public void HitObstacleSound()
+    {
+        audio.clip = hitSound;
+        audio.Play();
+    }
+
+    public void AwardSound()
+    {
+        audio.clip = awardSound;
+        audio.Play();
+    }
+    
+
 }
