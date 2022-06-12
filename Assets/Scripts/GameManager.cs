@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Text scoreText;
+    [SerializeField]
+    private GameObject camera;
     void Start()
     {
         player = GameObject.Find("PlayerCube");
@@ -55,11 +57,12 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(false);
         scorePanel.SetActive(true);
         player.GetComponent<PlayerController>().SetSpeed();
-        createCollectsAndObstacles();
+        StartCoroutine(createCollectsAndObstacles());
     }
 
-    void createCollectsAndObstacles()
+    IEnumerator createCollectsAndObstacles()
     {
+        yield return new WaitForSeconds(0.01f);
         Debug.Log("x  " + x);
         for (int i = 0; i < 50; i++) 
         {
@@ -71,14 +74,14 @@ public class GameManager : MonoBehaviour
                 GameObject obstacle_ = Instantiate(obstacleList[obstacleType]);
                 if (obstacleType == 1) 
                 {
-                    obstacle_.transform.position = new Vector3(x,1, (float) -2.5);   // left obstacle pos
+                    obstacle_.transform.position = new Vector3(x, 3, (float) -2.5);   // left obstacle pos
                 } 
                 else if (obstacleType == 2) 
                 {
-                    obstacle_.transform.position = new Vector3(x,1, (float) 2.5); // right obstacle pos
+                    obstacle_.transform.position = new Vector3(x, 3, (float) 2.5); // right obstacle pos
                 }
                 else{
-                    obstacle_.transform.position = new Vector3(x,1, 0);
+                    obstacle_.transform.position = new Vector3(x, 3, 0);
                 }
                 
                 x -= 5;
@@ -87,17 +90,18 @@ public class GameManager : MonoBehaviour
             {
                 int awardType = Random.Range(0,2);
                 GameObject award = Instantiate(awardList[awardType]);
-                award.transform.position = new Vector3(x,1, 0);
+                award.transform.position = new Vector3(x, 3, 0);
                 x -= 5;
             }
             else 
             {
                 GameObject collect_ = Instantiate(collect);
                 float z = Random.Range(-4, 4);
-                collect_.transform.position = new Vector3(x,1,z);
+                collect_.transform.position = new Vector3(x, 3,z);
                 x -= 5;
             }
         }
+        
     }
 
     public void FinishGame()
@@ -106,23 +110,28 @@ public class GameManager : MonoBehaviour
         finishPanel.SetActive(true);
         scoreText.text = player.GetComponent<PlayerController>().GetScore().ToString();
         Debug.Log("game finished");
-        DestroyGameObjects("Collect");
-        DestroyGameObjects("Obstacle");
-        DestroyGameObjects("Award");
-        
     }
 
     public void RestartGame()
     {   
-        //this.x = -5;
-        this.x -= 20;
-        createCollectsAndObstacles();
+        DestroyGameObjects("Collect");
+        DestroyGameObjects("Obstacle");
+        DestroyGameObjects("doubleObstacle");
+        DestroyGameObjects("Award");
+
+        this.x = -5;
+        //this.x -= 20;
+        StartCoroutine(createCollectsAndObstacles());
         collector.GetComponent<Collector>().SetHeight();
         finishPanel.SetActive(false);
-        //player.transform.position = new Vector3(-30,1,0);
+        player.transform.position = new Vector3(0,1,0);
+        camera.transform.position = new Vector3(12, 10, 0);
         player.GetComponent<PlayerController>().SetSpeed();
 
     }
+
+     
+
 
     private void DestroyGameObjects(string tag)
     {

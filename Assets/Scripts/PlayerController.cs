@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float xSpeed = 0;
     
     public int score = 0;
+    private float xRange = (float) 4.7;
     
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float xAxis = Input.GetAxis("Horizontal") * xSpeed * Time.deltaTime;
-        this.transform.Translate(xAxis, 0, speed * Time.deltaTime);
+        this.transform.Translate(xAxis, 2 , speed * Time.deltaTime);
+
+
+        if (transform.position.z < -xRange) 
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -xRange);
+        } 
+        if ( transform.position.z > xRange) 
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, xRange);
+
+        }
+        
+        
     }
 
     public void UpdateScore()

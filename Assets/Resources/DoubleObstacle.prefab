@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8347202021167813310}
   m_Layer: 0
   m_Name: DoubleObstacle
-  m_TagString: Obstacle
+  m_TagString: doubleObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +175,10 @@ PrefabInstance:
     - target: {fileID: 8450542839988591445, guid: ac01c08d4c5119c4e9cc830a03aa7237, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450542839988591445, guid: ac01c08d4c5119c4e9cc830a03aa7237, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac01c08d4c5119c4e9cc830a03aa7237, type: 3}

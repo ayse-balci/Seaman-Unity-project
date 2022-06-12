@@ -6,7 +6,7 @@ public class Collector : MonoBehaviour
 {
     GameObject playerCube;
     GameObject gameManager;
-    int height = 0;
+    public int height = 0;
     AudioSource audio;
     public AudioClip collectSound;
     public AudioClip hitSound;
@@ -41,20 +41,40 @@ public class Collector : MonoBehaviour
             other.gameObject.SetActive(false);
             AwardSound();
         }
-        else if (other.gameObject.tag == "Obstacle" && height == 0)
+
+        else if (other.gameObject.tag == "Obstacle" &&  height != 0)
+        {
+            decreaseHeight(1);
+            HitObstacleSound();
+        }
+
+        else if (other.gameObject.tag == "Obstacle" &&  height == 0)
+        {
+           HitObstacleSound();
+           gameManager.GetComponent<GameManager>().FinishGame();
+        }
+
+        else if (other.gameObject.tag == "doubleObstacle" &&  height <= 1)
         {
             HitObstacleSound();
             gameManager.GetComponent<GameManager>().FinishGame();
         }
+
+        else if (other.gameObject.tag == "doubleObstacle" && height > 1)
+        {
+            decreaseHeight(2);
+            HitObstacleSound();
+        }
+        
         else if (other.gameObject.tag == "FinishCube")
         {
             gameManager.GetComponent<GameManager>().FinishGame();
         }
-    }
+     }
 
-    public void decreaseHeight()
+    public void decreaseHeight(int h)
     {
-        height--;
+        height-= h;
     }
 
     public int GetHeight()
