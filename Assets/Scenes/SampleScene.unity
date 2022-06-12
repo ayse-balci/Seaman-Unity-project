@@ -736,15 +736,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 488286, guid: af2652a630f9e464895d954b8ce854bd, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 488286, guid: af2652a630f9e464895d954b8ce854bd, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 488286, guid: af2652a630f9e464895d954b8ce854bd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 488286, guid: af2652a630f9e464895d954b8ce854bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3155,7 +3155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collect: {fileID: 2971121129914833576, guid: 44f5b3e04dca968458eabb69929118c2, type: 3}
-  obstacle: {fileID: 7355697079009418617, guid: 3489d014fd99f7743a1b2c5d3f140401, type: 3}
+  obstacle: {fileID: 7355697079009418617, guid: 86474d3ef69a08148a0d505dfbad878a, type: 3}
   leftHalfObstacle: {fileID: 2683541120805919086, guid: 095c22a634a06f84b8267126dfeffccc, type: 3}
   rightHalfObstacle: {fileID: 2683541120805919086, guid: 095c22a634a06f84b8267126dfeffccc, type: 3}
   doubleObstacle: {fileID: 7461594121502220959, guid: 8a20bdac22c335b4db13f89c89d6a9d8, type: 3}
@@ -3367,7 +3367,7 @@ Transform:
   m_GameObject: {fileID: 988550051}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.3600006, y: -0.58000004, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 247774379}
   m_RootOrder: 0
