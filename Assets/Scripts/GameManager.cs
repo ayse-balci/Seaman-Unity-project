@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
     private Text scoreText;
     [SerializeField]
     private GameObject camera;
+    [SerializeField]
+    private Text levelText;
+    [SerializeField]
+    private Text buttonText;
+    private int level = 1;
+    private bool isWin = false;
     void Start()
     {
         player = GameObject.Find("PlayerCube");
@@ -49,7 +55,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        levelText.text = level.ToString();
     }    
 
     public void StartGame()
@@ -58,6 +64,11 @@ public class GameManager : MonoBehaviour
         scorePanel.SetActive(true);
         player.GetComponent<PlayerController>().SetSpeed();
         StartCoroutine(createCollectsAndObstacles());
+    }
+
+    public int GetLevel()
+    {
+        return level;
     }
 
     IEnumerator createCollectsAndObstacles()
@@ -110,10 +121,26 @@ public class GameManager : MonoBehaviour
         finishPanel.SetActive(true);
         scoreText.text = player.GetComponent<PlayerController>().GetScore().ToString();
         Debug.Log("game finished");
+        if (isWin) 
+        {
+            level +=1;
+            buttonText.text = "Next Level";
+        }
+        else 
+        {
+            level = 1;
+            buttonText.text = "Restart Game";
+            
+        }
     }
 
     public void RestartGame()
     {   
+        if (!isWin)
+        {
+            player.GetComponent<PlayerController>().SetScoreZero();
+        }
+        isWin = false;
         DestroyGameObjects("Collect");
         DestroyGameObjects("Obstacle");
         DestroyGameObjects("doubleObstacle");
@@ -128,9 +155,13 @@ public class GameManager : MonoBehaviour
         camera.transform.position = new Vector3(12, 10, 0);
         player.GetComponent<PlayerController>().SetSpeed();
 
+
     }
 
-     
+     public void SetIsWin(bool isWin) 
+     {
+        this.isWin = isWin;
+     }
 
 
     private void DestroyGameObjects(string tag)

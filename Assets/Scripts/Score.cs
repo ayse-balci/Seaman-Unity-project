@@ -7,22 +7,28 @@ public class Score : MonoBehaviour
 {
     [SerializeField]
     private Text scoreText;
+    [SerializeField]
+    private Text levelText;
     private GameObject playerCube;
+    GameObject gameManager;
+    
     void Awake()
 	{
         playerCube = GameObject.Find("PlayerCube");
-
+        gameManager = GameObject.Find("GameManager");
         scoreText.text = playerCube.GetComponent<PlayerController>().GetScore().ToString();
+        levelText.text = gameManager.GetComponent<GameManager>().GetLevel().ToString();
     }
 
-    void Update()
+    void LateUpdate()
     {
-        UpdateScoreText();
+        UpdateTexts();
     }
 
-    public void UpdateScoreText()
+    public void UpdateTexts()
     {
         scoreText.text = playerCube.GetComponent<PlayerController>().GetScore().ToString();
+        levelText.text = gameManager.GetComponent<GameManager>().GetLevel().ToString();
     }
 
 }

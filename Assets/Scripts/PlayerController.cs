@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         return score;
     }
 
+    public void SetScoreZero()
+    {
+        score = 0;
+    }
+
     public int GetPlayerHeight()
     {
         return ((int)transform.position.y);

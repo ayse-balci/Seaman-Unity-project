@@ -51,12 +51,14 @@ public class Collector : MonoBehaviour
         else if (other.gameObject.tag == "Obstacle" &&  height == 0)
         {
            HitObstacleSound();
+           gameManager.GetComponent<GameManager>().SetIsWin(false);
            gameManager.GetComponent<GameManager>().FinishGame();
         }
 
         else if (other.gameObject.tag == "doubleObstacle" &&  height <= 1)
         {
             HitObstacleSound();
+            gameManager.GetComponent<GameManager>().SetIsWin(false);
             gameManager.GetComponent<GameManager>().FinishGame();
         }
 
@@ -68,6 +70,7 @@ public class Collector : MonoBehaviour
         
         else if (other.gameObject.tag == "FinishCube")
         {
+            gameManager.GetComponent<GameManager>().SetIsWin(true);
             gameManager.GetComponent<GameManager>().FinishGame();
         }
      }
