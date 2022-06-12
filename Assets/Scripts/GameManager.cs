@@ -101,7 +101,8 @@ public class GameManager : MonoBehaviour
             {
                 int awardType = Random.Range(0,2);
                 GameObject award = Instantiate(awardList[awardType]);
-                award.transform.position = new Vector3(x, 3, 0);
+                float z = Random.Range(-4, 4);
+                award.transform.position = new Vector3(x, 3, z);
                 x -= 5;
             }
             else 
